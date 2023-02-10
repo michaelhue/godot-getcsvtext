@@ -1,0 +1,20 @@
+{
+  "name": "getcsvtext",
+  "version": "0.0.1",
+  "description": "CLI for converting CSV to gettext and vice-versa",
+  "bin": "./bin/getcsvtext",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["cli", "gettext"],
+  "author": "Michael Hüneburg <hello@michaelhue.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^10.0.0",
+    "fast-csv": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "typescript": "^4.9.5"
+  }
+}
