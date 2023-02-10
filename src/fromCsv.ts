@@ -12,8 +12,11 @@ msgstr ""
 
 const poHeader = (locale: string) => `msgid ""
 msgstr ""
+"Last-Translator: Automatically generated\\n"
+"Language-Team: none\\n"
+"Language: ${locale}\\n"
 "MIME-Version: 1.0\\n"
-"Content-Type: text/plain; charset=utf-8\\n"
+"Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
 `;
 
