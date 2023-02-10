@@ -11,6 +11,11 @@ program
   .argument("[destination]", "path to destination directory")
   .description("convert csv to gettext")
   .option("-s, --skip-equal <locale>", "omit messages equal to locale")
+  .option(
+    "-o, --template-file <file>",
+    "change template file name",
+    "messages.pot"
+  )
   .option("-n, --no-template", "do not generate the pot file")
   .option("-t, --template-only", "only generate the pot file")
   .action(

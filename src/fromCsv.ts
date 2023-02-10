@@ -46,6 +46,7 @@ const convertMsgstr = (input: string) => {
 export interface ConvertFromCsvOptions {
   readonly template?: boolean;
   readonly templateOnly?: boolean;
+  readonly templateFile?: string;
   readonly skipEqual?: string;
 }
 
@@ -57,7 +58,7 @@ export async function convertFromCsv(
   const base = process.cwd();
   const srcFile = path.resolve(base, src);
   const destDir = dest ? path.resolve(base, dest) : path.dirname(src);
-  const potFile = path.join(destDir, "messages.pot");
+  const potFile = path.resolve(destDir, options.templateFile || "messages.pot");
 
   let potStream: WriteStream;
   const poStreams: Record<string, WriteStream> = {};
