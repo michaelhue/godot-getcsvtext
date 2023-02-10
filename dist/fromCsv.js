@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.convertFromCsv = void 0;
 const path_1 = __importDefault(require("path"));
 const fs_1 = require("fs");
+const promises_1 = require("fs/promises");
 const fast_csv_1 = require("fast-csv");
 const potHeader = () => `#, fuzzy
 msgid ""
@@ -27,24 +28,26 @@ const entry = (id, str) => `
 msgid "${id}"
 msgstr "${str}"
 `;
-const escape = (input) => {
-    let output = input
-        .replaceAll("\\", "\\\\")
-        .replaceAll('"', '\\"')
-        .replaceAll("\t", "\\t")
-        .replaceAll("\r\n", "\n");
+const escape = (input) => input
+    .replaceAll("\\", "\\\\")
+    .replaceAll('"', '\\"')
+    .replaceAll("\t", "\\t")
+    .replaceAll("\r\n", "\n");
+const convertMsgstr = (input) => {
+    let output = escape(input);
     if (output.indexOf("\n") >= 0) {
         output = ['"'].concat(output.split("\n").join('\\n"\n"')).join('\n"');
     }
     return output;
 };
-function convertFromCsv(src, dest, options = { template: true }) {
+async function convertFromCsv(src, dest, options = { template: true }) {
     const base = process.cwd();
     const srcFile = path_1.default.resolve(base, src);
     const destDir = dest ? path_1.default.resolve(base, dest) : path_1.default.dirname(src);
     const potFile = path_1.default.join(destDir, "messages.pot");
     let potStream;
     const poStreams = {};
+    await (0, promises_1.mkdir)(destDir, { recursive: true });
     function writePot(msgid) {
         if (!potStream) {
             potStream = (0, fs_1.createWriteStream)(potFile);
@@ -70,18 +73,18 @@ function convertFromCsv(src, dest, options = { template: true }) {
                 msgid = row[locale];
                 continue;
             }
-            const msgstr = escape(row[locale]);
+            const msgstr = convertMsgstr(row[locale]);
             if (locale === options.skipEqual) {
                 sourcestr = msgstr;
             }
             else if (msgstr === sourcestr) {
                 continue;
             }
-            if (msgid && msgstr && options.templateOnly !== true) {
+            if (msgid?.length && msgstr?.length && options.templateOnly !== true) {
                 writePo(locale, msgid, msgstr);
             }
         }
-        if (msgid && options.template !== false) {
+        if (msgid?.length && options.template !== false) {
             writePot(msgid);
         }
     }
