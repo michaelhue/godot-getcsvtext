@@ -52,12 +52,32 @@ Use this command to convert a CSV `<source>` file to a `messages.pot` and multip
 
 ##### `--skip-equal <locale>`
 
-With this option, all message strings that are equal to the corresponding string from `<locale>` (e.g. `en`) will be omitted when generating `.po` file for other locales. Make sure that you provide the same locale that is used as the `fallback_locale` in your Godot project settings. Using this option is recommended.
+With this option, all message strings that are equal to the corresponding string from `<locale>` (e.g. `en`) will be omitted when generating `.po` files for other locales. Make sure that you provide the same locale that is used as the `fallback_locale` in your Godot project settings. Using this option is recommended.
 
-#### `--no--template`
+#### `--no-template`
 
-The tool will only generate `.po` files and skip the `messages.pot` file if enabled.
+Only generate `.po` files and skip the `messages.pot` file.
 
-#### `--template--only`
+#### `--template-only`
 
-The opposite of the previous option. If enabled, only the `messages.pot` file will be generated.
+Opposite of the previous option, only generate the `messages.pot` file.
+
+#### Examples
+
+Basic usage, read `translations.csv` and create gettext files in current directory:
+
+```bash
+$ gettextcsv from_csv translations.csv
+```
+
+Create gettext files in an `output` directory.
+
+```bash
+$ gettextcsv from_csv translations.csv output
+```
+
+When generating the `.po` files, omit all messages that are equal to the corresponding message in the `en` locale.
+
+```bash
+$ gettextcsv from_csv --skip-equal=en translations.csv output
+```
