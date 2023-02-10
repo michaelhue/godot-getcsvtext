@@ -44,7 +44,7 @@ async function convertFromCsv(src, dest, options = { template: true }) {
     const base = process.cwd();
     const srcFile = path_1.default.resolve(base, src);
     const destDir = dest ? path_1.default.resolve(base, dest) : path_1.default.dirname(src);
-    const potFile = path_1.default.join(destDir, "messages.pot");
+    const potFile = path_1.default.resolve(destDir, options.templateFile || "messages.pot");
     let potStream;
     const poStreams = {};
     await (0, promises_1.mkdir)(destDir, { recursive: true });
