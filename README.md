@@ -31,20 +31,20 @@ After installation, you can run the tool by typing `path/to/bin/getcsvtext` in y
 Show all commands:
 
 ```bash
-$ gettextcsv --help
+$ getcsvtext --help
 ```
 
 Show instructions for a specific command:
 
 ```bash
-$ gettextcsv <command> --help
+$ getcsvtext <command> --help
 ```
 
 ## Usage
 
 Currently the tool only supports conversions from `CSV` to `gettext`.
 
-### `gettextcsv from_csv <source> [destination]`
+### `getcsvtext from_csv <source> [destination]`
 
 Use this command to convert a CSV `<source>` file to a `messages.pot` and multiple `.po` files (one per locale) at `[destination]`. If no `[destination]` is provided, the output files will be created in the current working directory.
 
@@ -67,17 +67,17 @@ Opposite of the previous option, only generate the `messages.pot` file.
 Basic usage, read `translations.csv` and create gettext files in current directory:
 
 ```bash
-$ gettextcsv from_csv translations.csv
+$ getcsvtext from_csv translations.csv
 ```
 
 Create gettext files in an `output` directory.
 
 ```bash
-$ gettextcsv from_csv translations.csv output
+$ getcsvtext from_csv translations.csv output
 ```
 
 When generating the `.po` files, omit all messages that are equal to the corresponding message in the `en` locale.
 
 ```bash
-$ gettextcsv from_csv --skip-equal=en translations.csv output
+$ getcsvtext from_csv --skip-equal=en translations.csv output
 ```
