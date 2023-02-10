@@ -60,11 +60,11 @@ Changes the name of the generated `.pot` file, which is `messages.pot` by defaul
 
 #### `--no-template`
 
-Only generate `.po` files and skip the `messages.pot` file.
+Only generate `.po` files and skip the `.pot` file.
 
 #### `--template-only`
 
-Opposite of the previous option, only generate the `messages.pot` file.
+Opposite of the previous option, only generate the `.pot` file.
 
 #### Examples
 
