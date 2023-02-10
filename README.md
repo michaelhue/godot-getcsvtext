@@ -46,7 +46,7 @@ Currently the tool only supports conversions from `CSV` to `gettext`.
 
 ### `getcsvtext from_csv <source> [destination]`
 
-Use this command to convert a CSV `<source>` file to a `messages.pot` and multiple `.po` files (one per locale) at `[destination]`. If no `[destination]` is provided, the output files will be created in the current working directory.
+Use this command to convert a CSV `<source>` file to a `messages.pot` and multiple `.po` files (one per locale) at `[destination]`. If no `[destination]` is provided, the output files will be created in the current working directory. The tool will try to create the `[destination]` directory if it does not exist.
 
 #### Options
 

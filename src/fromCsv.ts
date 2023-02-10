@@ -1,5 +1,6 @@
 import path from "path";
 import { createReadStream, createWriteStream, WriteStream } from "fs";
+import { mkdir } from "fs/promises";
 import { parse } from "fast-csv";
 
 const potHeader = () => `#, fuzzy
@@ -45,7 +46,7 @@ export interface ConvertFromCsvOptions {
   readonly skipEqual?: string;
 }
 
-export function convertFromCsv(
+export async function convertFromCsv(
   src: string,
   dest: string | undefined,
   options: ConvertFromCsvOptions = { template: true }
@@ -57,6 +58,8 @@ export function convertFromCsv(
 
   let potStream: WriteStream;
   const poStreams: Record<string, WriteStream> = {};
+
+  await mkdir(destDir, { recursive: true });
 
   function writePot(msgid: string) {
     if (!potStream) {
