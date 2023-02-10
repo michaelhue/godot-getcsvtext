@@ -54,15 +54,15 @@ Use this command to convert a CSV `<source>` file to a `messages.pot` and multip
 
 With this option, all message strings that are equal to the corresponding string from `<locale>` (e.g. `en`) will be omitted when generating `.po` files for other locales. Make sure that you provide the same locale that is used as the `fallback_locale` in your Godot project settings. Using this option is recommended.
 
-#### `--template-file <file>`
+##### `--template-file <file>`
 
 Changes the name of the generated `.pot` file, which is `messages.pot` by default. `<file>` should include the file extension. Can also be used to generate the template in a different directory, relative to `[destination]`.
 
-#### `--no-template`
+##### `--no-template`
 
 Only generate `.po` files and skip the `.pot` file.
 
-#### `--template-only`
+##### `--template-only`
 
 Opposite of the previous option, only generate the `.pot` file.
 
