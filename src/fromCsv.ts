@@ -106,12 +106,12 @@ export async function convertFromCsv(
         continue;
       }
 
-      if (msgid && msgstr && options.templateOnly !== true) {
+      if (msgid?.length && msgstr?.length && options.templateOnly !== true) {
         writePo(locale, msgid, msgstr);
       }
     }
 
-    if (msgid && options.template !== false) {
+    if (msgid?.length && options.template !== false) {
       writePot(msgid);
     }
   }
