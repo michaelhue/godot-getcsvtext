@@ -26,12 +26,15 @@ msgid "${id}"
 msgstr "${str}"
 `;
 
-const escape = (input: string) => {
-  let output = input
+const escape = (input: string) =>
+  input
     .replaceAll("\\", "\\\\")
     .replaceAll('"', '\\"')
     .replaceAll("\t", "\\t")
     .replaceAll("\r\n", "\n");
+
+const convertMsgstr = (input: string) => {
+  let output = escape(input);
 
   if (output.indexOf("\n") >= 0) {
     output = ['"'].concat(output.split("\n").join('\\n"\n"')).join('\n"');
@@ -95,7 +98,7 @@ export async function convertFromCsv(
         continue;
       }
 
-      const msgstr = escape(row[locale]);
+      const msgstr = convertMsgstr(row[locale]);
 
       if (locale === options.skipEqual) {
         sourcestr = msgstr;
